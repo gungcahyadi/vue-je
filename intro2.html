@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Intro 2</title>
+	<script src="vue/vue.js"></script>
+</head>
+<body>
+	<script>
+		var _obj = {namadepan: "gung",namabelakang: "cahyadi"};
+		var vm = new Vue({
+			data: _obj
+		})
+		console.log(vm.namadepan);
+		console.log(vm.$data);
+		console.log(vm.$data.namadepan);
+		var Component = Vue.extend({
+			data: function(){
+				return _obj
+			}
+		});
+		var myComponentIstance = new Component();
+		console.log(myComponentIstance.namabelakang);
+		console.log(myComponentIstance.$data);
+
+	</script>
+</body>
+</html>

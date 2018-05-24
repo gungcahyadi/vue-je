@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Binding</title>
+		<script src="vue/vue.js"></script>
+</head>
+<body>
+	<div id="databinding">
+		{{title}} <br>
+		<a href="link" title="False" target="_blank">Click Me</a><br>
+		<a href="{{link}}" title="False" target="_blank">Click Me</a><br>
+		<a v-bind:href="link" title="True" target="_blank">Click Me</a><br>
+
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#databinding',
+			data:{
+				title : 'data binding',
+				link:'https://getbootstrap.com/'
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue Js Instance</title>
+	<script src="vue/vue.js"></script>
+</head>
+<body>
+	<div id="databinding">
+		<button v-on:click="displaynumber">Click Me</button>
+		<h2>Add number 100 + 200 = {{total}}</h2>
+	</div>
+	<div id="databinding2">
+		<div v-bind:style="styleobj" v-on:mouseover="changebgcolor" v-on:mouseout="originalcolor"></div>
+	</div>
+	<div id="databinding3">
+		<button v-on:click.once="oneclick" v-bind:style="styleobj">click once</button>
+		<p>output: {{num1}}</p>
+		<button v-on:click="click" v-bind:style="styleobj">Click Me</button>
+		<p>output: {{num2}}</p>
+	</div>
+	<div id = "databinding4">
+         <a href = "http://www.google.com" v-on:click = "clickme" target = "_blank" v-bind:style = "styleobj">Click Me</a>
+      </div>
+    <div id = "databinding5">
+         <input type = "text" v-on:keyup.enter = "showinputvalue" v-bind:style = "styleobj" placeholder = "Enter your name"/>
+         <h3> {{name}}</h3>
+      </div>
+     <div id = "databinding6">
+         <div id = "counter-event-example">
+            <p style = "font-size:25px;">Language displayed : <b>{{ languageclicked }}</b></p>
+            <button-counter
+            v-for = "(item, index) in languages"
+            v-bind:item = "item"
+            v-bind:index = "index"
+            v-on:showlanguage = "languagedisp"></button-counter>
+         </div>
+      </div>
+	<script>
+		var vm = new Vue({
+			el: "#databinding",
+			data:{
+				num1:100,
+				num2:200,
+				total:''
+			},
+			methods:{
+				displaynumber : function(event) {
+					console.log(event);
+					return this.total=this.num1+this.num2;
+				}
+			},
+		});
+		var vm = new Vue({
+			el: "#databinding2",
+			data:{
+				num1:100,
+				num2:200,
+				total:'',
+				styleobj:{
+					width:"300px",
+					height:"100px",
+					backgroundColor:"blue"
+				}
+			},
+			methods:{
+				changebgcolor: function() {
+					this.styleobj.backgroundColor="green";
+
+				},
+				originalcolor: function(){
+					this.styleobj.originalcolor="blue";
+				}
+			},
+		});
+		var vm = new Vue({
+            el: '#databinding3',
+            data: {
+               num1 : 0,
+               num2 :0,
+               styleobj: {
+                  backgroundColor: '#2196F3!important',
+                  cursor: 'pointer',
+                  padding: '8px 16px',
+                  verticalAlign: 'middle',
+               }
+            },
+            methods : {
+               oneclick : function() {
+                  this.num1++;
+               },
+               click : function() {
+                  this.num2++;
+               }
+            }
+         });
+		var vm = new Vue({
+            el: '#databinding4',
+            data: {
+               clicknum : 0,
+               clicknum1 :0,
+               styleobj: {
+                  color: '#4CAF50',
+                  marginLeft: '20px',
+                  fontSize: '30px'
+               }
+            },
+            methods : {
+               clickme : function() {
+                  alert("Anchor tag is clicked");
+               }
+            }
+         });
+		var vm = new Vue({
+            el: '#databinding5',
+            data: {
+               name:'',
+               styleobj: {
+                  width: "30%",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  boxSizing: "border-box"
+               }
+            },
+            methods : {
+               showinputvalue : function(event) {
+                  this.name=event.target.value;
+               }
+            }
+         });
+		Vue.component('button-counter', {
+            template: '<button v-on:click = "displayLanguage(item)"><span style = "font-size:25px;">{{ item }}</span></button>',
+            data: function () {
+               return {
+                  counter: 0
+               }
+            },
+            props:['item'],
+            methods: {
+               displayLanguage: function (lng) {
+                  console.log(lng);
+                  this.$emit('showlanguage', lng);
+               }
+            },
+         });
+         var vm = new Vue({
+            el: '#databinding6',
+            data: {
+               languageclicked: "",
+               languages : ["Java", "PHP", "C++", "C", "Javascript", "C#", "Python", "HTML"]
+            },
+            methods: {
+               languagedisp: function (a) {
+                  this.languageclicked = a;
+               }
+            }
+         })
+	</script>
+</body>
+</html>

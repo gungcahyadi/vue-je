@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>animasi</title>
+	<script src="vue/vue.js"></script>
+	<style>
+		.shiftx-enter-active{
+			animation: shift-in 2s;
+		}
+		.shiftx-leave-active{
+			animation: shift-in 2s reverse;
+		}
+		@keyframes shift-in{
+			0%{transform: rotateX(0deg);}
+			25%{transform: rotateX(90deg);}
+			50%{transform: rotateX(120deg);}
+			75%{transform: rotateX(180deg);}
+			100%{transform: rotateX(3600deg);}
+		}
+	</style>
+
+</head>
+<body>
+	<div id="databinding">
+		<button v-on:click="show = !show">Click Me</button>
+		<transition name="shiftx">
+			<p v-show="show">
+				<img src="kelingking-beach-indonesia_l.jpg" alt="" style="width: 100px; height: 100px;">
+			</p>
+		</transition>
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#databinding',
+			data:{
+				show:true
+			},
+			methods:{}
+
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue Js Instance</title>
+	<script src="vue/vue.js"></script>
+</head>
+<body>
+	<div id="gallery">
+		<h1>{{title}}</h1>
+		<gallery
+		v-for="(item,index) in gallery"
+		v-bind:item="item"
+		v-bind:index="index"
+		v-on:gallery="listgallery"
+		></gallery>
+	</div>
+	<script>
+		Vue.component('gallery',{
+			template:'<div style="width:20%;float:left;">{{gallery}}</div>',
+			data: function() {
+				return{
+					counter:0
+				}
+			}
+		})
+		var vm = new Vue({
+			el:'#gallery',
+			data:{
+				list:"",
+				gallery:[
+					"img/a (1).jpg",
+					"img/a (2).jpg"
+				]
+			}
+
+		})
+	</script>
+</body>
+</html>

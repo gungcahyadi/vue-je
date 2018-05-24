@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue js Instance</title>
+	<script src="vue/vue.js"></script>
+	<style>
+		.red{
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="computed_props">
+		<h1 class="red">Random no from computed property: {{getrandom}}</h1>
+		<h1>Random no from computed property: {{getrandomno1()}}</h1>
+		<h1>Random no from computed property: {{getrandomno1()}}</h1>
+		<h1 class="red">Random no from computed property: {{getrandom}}</h1>
+		<h1 class="red">Random no from computed property: {{getrandom}}</h1>
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#computed_props',
+			data: {
+				name : "hello world"
+			},
+			methods:{
+				getrandomno1:function(){
+					return Math.random();
+				}
+			},
+			computed:{
+				getrandom:function(){
+					return Math.random();
+				}
+			}
+		})
+	</script>
+</body>
+</html>
